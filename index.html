@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contenido Multimedia - Examen Parcial</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Header Styles */
+        header {
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.15);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            animation: slideDown 0.5s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        h1 {
+            color: #667eea;
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Navigation Styles */
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+        }
+
+        nav a:hover {
+            background: #667eea;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+        }
+
+        /* Main Content */
+        main {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        section {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            margin: 2rem 0;
+            padding: 3rem;
+            border-radius: 25px;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.15);
+            transition: all 0.4s ease;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            animation: fadeInUp 0.6s ease-out backwards;
+        }
+
+        section:nth-child(1) { animation-delay: 0.1s; }
+        section:nth-child(2) { animation-delay: 0.2s; }
+        section:nth-child(3) { animation-delay: 0.3s; }
+        section:nth-child(4) { animation-delay: 0.4s; }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        section:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 60px rgba(102, 126, 234, 0.25);
+        }
+
+        section h2 {
+            color: #667eea;
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+            border-bottom: 3px solid transparent;
+            background: linear-gradient(to right, #667eea, #764ba2) left bottom no-repeat;
+            background-size: 100% 3px;
+            padding-bottom: 0.5rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: linear-gradient(to right, #764ba2, #667eea);
+            transition: width 0.4s ease;
+        }
+
+        section:hover h2::after {
+            width: 100%;
+        }
+
+        /* Welcome Section */
+        #inicio figure {
+            width: 100%;
+            max-width: 800px;
+            margin: 2rem auto;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        video, iframe {
+            width: 100%;
+            height: 450px;
+            border: none;
+            border-radius: 15px;
+        }
+
+        /* Game Section */
+        .game-container {
+            text-align: center;
+            padding: 2rem;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e3e7f3 100%);
+            border-radius: 20px;
+            box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.05);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .game-container::before {
+            content: '🎮';
+            position: absolute;
+            font-size: 15rem;
+            opacity: 0.03;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-15deg);
+            pointer-events: none;
+        }
+
+        .game-container > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        #word-display {
+            font-size: 2.5rem;
+            letter-spacing: 0.5rem;
+            margin: 2rem 0;
+            color: #667eea;
+            font-weight: 600;
+            text-shadow: 2px 2px 4px rgba(102, 126, 234, 0.2);
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+        }
+
+        #letters-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem;
+            margin: 2rem 0;
+        }
+
+        .letter-btn {
+            padding: 1rem 1.2rem;
+            font-size: 1.2rem;
+            border: 2px solid #667eea;
+            background: white;
+            color: #667eea;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.1);
+        }
+
+        .letter-btn:hover:not(:disabled) {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+            border-color: transparent;
+        }
+
+        .letter-btn:active:not(:disabled) {
+            transform: translateY(-1px) scale(1.02);
+        }
+
+        .letter-btn:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+
+        #game-status {
+            font-size: 1.3rem;
+            margin: 1rem 0;
+            min-height: 30px;
+            font-weight: 500;
+        }
+
+        .reset-btn {
+            padding: 1rem 2.5rem;
+            font-size: 1.1rem;
+            background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            margin-top: 1rem;
+            box-shadow: 0 6px 20px rgba(118, 75, 162, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .reset-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .reset-btn:hover::before {
+            left: 100%;
+        }
+
+        .reset-btn:hover {
+            transform: scale(1.05) translateY(-2px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+        }
+
+        /* Infographic Section */
+        .infographic-container {
+            background: linear-gradient(135deg, #f5f7fa 0%, #e3e7f3 100%);
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .db-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .db-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 1px solid rgba(102, 126, 234, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .db-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(to right, #667eea, #764ba2);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
+        }
+
+        .db-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .db-card:hover {
+            transform: translateY(-12px) scale(1.02);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.25);
+            border-color: rgba(102, 126, 234, 0.3);
+        }
+
+        .db-card h3 {
+            color: #764ba2;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            position: relative;
+            padding-left: 1rem;
+        }
+
+        .db-card h3::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 4px;
+            height: 60%;
+            background: linear-gradient(to bottom, #667eea, #764ba2);
+            border-radius: 2px;
+        }
+
+        .db-card ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .db-card li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .db-card li:before {
+            content: "▸";
+            position: absolute;
+            left: 0;
+            color: #667eea;
+            font-weight: bold;
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            color: #333;
+            text-align: center;
+            padding: 2.5rem;
+            margin-top: 3rem;
+            position: relative;
+            z-index: 1;
+            box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .social-links {
+            margin-top: 1rem;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        .social-links a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            position: relative;
+        }
+
+        .social-links a::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%) scaleX(0);
+            width: 80%;
+            height: 2px;
+            background: linear-gradient(to right, #667eea, #764ba2);
+            transition: transform 0.3s ease;
+        }
+
+        .social-links a:hover::before {
+            transform: translateX(-50%) scaleX(1);
+        }
+
+        .social-links a:hover {
+            color: #764ba2;
+            transform: translateY(-2px);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 480px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            h1 {
+                font-size: 1.5rem;
+                margin-bottom: 1rem;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            section {
+                padding: 1.5rem;
+            }
+
+            section h2 {
+                font-size: 1.5rem;
+            }
+
+            #word-display {
+                font-size: 1.8rem;
+                letter-spacing: 0.3rem;
+            }
+
+            .letter-btn {
+                padding: 0.8rem 1rem;
+                font-size: 1rem;
+            }
+
+            video, iframe {
+                height: 250px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header con navegación -->
+    <header>
+        <div class="header-content">
+            <h1>🎓 Generación de Contenido Multimedia</h1>
+            <nav>
+                <ul>
+                    <li><a href="#inicio">Inicio</a></li>
+                    <li><a href="#gamificacion">Gamificación</a></li>
+                    <li><a href="#bases-datos">Bases de Datos</a></li>
+                    <li><a href="#contacto">Contacto</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Contenido principal -->
+    <main>
+        <!-- Sección de Bienvenida -->
+        <section id="inicio">
+            <h2>🎬 Bienvenida</h2>
+            <article>
+                <p>Bienvenido a este sitio web educativo sobre contenido multimedia, gamificación y bases de datos. Este proyecto integra HTML5 semántico, CSS3 moderno y elementos interactivos para demostrar las competencias adquiridas en el curso.</p>
+                <figure>
+                    <iframe src="https://www.youtube.com/embed/qz0aGYrrlhU" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen>
+                    </iframe>
+                </figure>
+                <p style="margin-top: 1rem;">En este sitio encontrarás recursos educativos, un juego interactivo y una completa guía sobre el mundo de las bases de datos.</p>
+            </article>
+        </section>
+
+        <!-- Sección de Gamificación -->
+        <section id="gamificacion">
+            <h2>🎮 Gamificación: Juego del Ahorcado</h2>
+            <article class="game-container">
+                <p>Adivina la palabra relacionada con tecnología y bases de datos:</p>
+                <div id="word-display"></div>
+                <div id="game-status"></div>
+                <div id="letters-container"></div>
+                <button class="reset-btn" onclick="resetGame()">🔄 Nuevo Juego</button>
+            </article>
+        </section>
+
+        <!-- Sección de Infografía -->
+        <section id="bases-datos">
+            <h2>💾 El Mundo de las Bases de Datos</h2>
+            <article class="infographic-container">
+                <div class="db-grid">
+                    <div class="db-card">
+                        <h3>¿Qué es una Base de Datos?</h3>
+                        <p>Una base de datos es un conjunto organizado de información estructurada que se almacena electrónicamente en un sistema informático. Permite almacenar, gestionar y recuperar datos de manera eficiente.</p>
+                    </div>
+
+                    <div class="db-card">
+                        <h3>Tipos de Bases de Datos</h3>
+                        <ul>
+                            <li>Relacionales (SQL)</li>
+                            <li>NoSQL (Documentales)</li>
+                            <li>Orientadas a objetos</li>
+                            <li>Jerárquicas</li>
+                            <li>En memoria (In-Memory)</li>
+                            <li>Distribuidas</li>
+                        </ul>
+                    </div>
+
+                    <div class="db-card">
+                        <h3>Modelo Relacional</h3>
+                        <p>Organiza los datos en tablas (relaciones) compuestas por filas y columnas. Utiliza claves primarias y foráneas para establecer relaciones entre tablas, garantizando la integridad referencial.</p>
+                    </div>
+
+                    <div class="db-card">
+                        <h3>SQL vs NoSQL</h3>
+                        <p><strong>SQL:</strong> Estructura rígida, relaciones definidas, ACID compliance.</p>
+                        <p><strong>NoSQL:</strong> Flexible, escalable horizontalmente, ideal para big data y aplicaciones en tiempo real.</p>
+                    </div>
+
+                    <div class="db-card">
+                        <h3>Motores Más Utilizados</h3>
+                        <ul>
+                            <li><strong>MySQL:</strong> Open source, ampliamente usado</li>
+                            <li><strong>PostgreSQL:</strong> Robusto y extensible</li>
+                            <li><strong>SQL Server:</strong> Solución empresarial de Microsoft</li>
+                            <li><strong>MongoDB:</strong> Líder en NoSQL</li>
+                            <li><strong>Oracle:</strong> Potente para grandes empresas</li>
+                        </ul>
+                    </div>
+
+                    <div class="db-card">
+                        <h3>Ciclo de Vida de una BD</h3>
+                        <ul>
+                            <li>1. Análisis de requisitos</li>
+                            <li>2. Diseño conceptual</li>
+                            <li>3. Diseño lógico</li>
+                            <li>4. Diseño físico</li>
+                            <li>5. Implementación</li>
+                            <li>6. Pruebas y validación</li>
+                            <li>7. Mantenimiento</li>
+                        </ul>
+                    </div>
+
+                    <div class="db-card">
+                        <h3>Ejemplos en la Vida Real</h3>
+                        <ul>
+                            <li>🏦 Bancos: Gestión de cuentas y transacciones</li>
+                            <li>🛒 E-commerce: Inventarios y pedidos</li>
+                            <li>🏥 Hospitales: Historiales médicos</li>
+                            <li>📱 Redes sociales: Perfiles y contenido</li>
+                            <li>✈️ Aerolíneas: Reservas y vuelos</li>
+                        </ul>
+                    </div>
+
+                    <div class="db-card">
+                        <h3>Tendencias Actuales</h3>
+                        <ul>
+                            <li>Cloud Databases (AWS, Azure, GCP)</li>
+                            <li>Bases de datos autónomas</li>
+                            <li>Blockchain databases</li>
+                            <li>Graph databases</li>
+                            <li>Time-series databases</li>
+                        </ul>
+                    </div>
+                </div>
+            </article>
+        </section>
+
+        <!-- Sección de Contacto -->
+        <section id="contacto">
+            <h2>📧 Contacto</h2>
+            <article>
+                <p>Para más información sobre este proyecto o consultas académicas:</p>
+                <p><strong>Universidad Modular Abierta</strong></p>
+                <p>Facultad de Ciencias Económicas</p>
+                <p>Asignatura: Generación de Contenido Multimedia</p>
+                <p>Email: contacto@uma.edu.sv</p>
+            </article>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Universidad Modular Abierta | Todos los derechos reservados</p>
+        <div class="social-links">
+            <a href="#">Facebook</a>
+            <a href="#">Twitter</a>
+            <a href="#">Instagram</a>
+            <a href="#">LinkedIn</a>
+        </div>
+    </footer>
+
+    <!-- JavaScript para el juego del ahorcado -->
+    <script>
+        const words = [
+            'BASE DE DATOS',
+            'PROGRAMACION',
+            'JAVASCRIPT',
+            'HTML',
+            'CSS',
+            'SERVIDOR',
+            'MULTIMEDIA',
+            'ALGORITMO',
+            'CONSULTA',
+            'TABLA'
+        ];
+
+        let currentWord = '';
+        let guessedLetters = [];
+        let remainingAttempts = 6;
+
+        function initGame() {
+            currentWord = words[Math.floor(Math.random() * words.length)];
+            guessedLetters = [];
+            remainingAttempts = 6;
+            displayWord();
+            createLetterButtons();
+            updateStatus();
+        }
+
+        function displayWord() {
+            const display = currentWord.split('').map(letter => {
+                if (letter === ' ') return ' / ';
+                return guessedLetters.includes(letter) ? letter : '_';
+            }).join(' ');
+            document.getElementById('word-display').textContent = display;
+        }
+
+        function createLetterButtons() {
+            const container = document.getElementById('letters-container');
+            container.innerHTML = '';
+            const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+            
+            alphabet.forEach(letter => {
+                const btn = document.createElement('button');
+                btn.textContent = letter;
+                btn.className = 'letter-btn';
+                btn.onclick = () => guessLetter(letter, btn);
+                container.appendChild(btn);
+            });
+        }
+
+        function guessLetter(letter, btn) {
+            btn.disabled = true;
+            guessedLetters.push(letter);
+
+            if (currentWord.includes(letter)) {
+                displayWord();
+                checkWin();
+            } else {
+                remainingAttempts--;
+                updateStatus();
+                checkLose();
+            }
+        }
+
+        function updateStatus() {
+            const status = document.getElementById('game-status');
+            status.textContent = `Intentos restantes: ${remainingAttempts}`;
+            status.style.color = remainingAttempts <= 2 ? '#e74c3c' : '#667eea';
+        }
+
+        function checkWin() {
+            const isWon = currentWord.split('').every(letter => 
+                letter === ' ' || guessedLetters.includes(letter)
+            );
+
+            if (isWon) {
+                document.getElementById('game-status').innerHTML = 
+                    '🎉 ¡Felicidades! ¡Has ganado!';
+                document.getElementById('game-status').style.color = '#27ae60';
+                disableAllButtons();
+            }
+        }
+
+        function checkLose() {
+            if (remainingAttempts <= 0) {
+                document.getElementById('game-status').innerHTML = 
+                    `😢 Game Over. La palabra era: <strong>${currentWord}</strong>`;
+                document.getElementById('game-status').style.color = '#e74c3c';
+                disableAllButtons();
+            }
+        }
+
+        function disableAllButtons() {
+            document.querySelectorAll('.letter-btn').forEach(btn => {
+                btn.disabled = true;
+            });
+        }
+
+        function resetGame() {
+            initGame();
+        }
+
+        // Iniciar el juego al cargar la página
+        window.onload = initGame;
+    </script>
+</body>
+</html>
